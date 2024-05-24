@@ -17,9 +17,9 @@ Allows users to track the restaurant organisation's performance based on number 
 For the purposes of the operational managers in restarants to track their monthly performance and allow improved planning of staffing and ingredients in stock/purchasing needs.
 ![Restaurants' Monthly Performance Dashboard](https://github.com/vltnnx/Restaurant-Sales-Analysis/blob/main/fig/dashboards/restaurant_monthly.png?raw=true)
 
+## Data warehouse
+![dwh_design](https://github.com/vltnnx/Restaurant-Sales-Analysis/blob/main/fig/data%20warehouse/dwh-design.png?raw=true)
+
 ## Future iterations
 - Generating additional data for the project to allow more realistic analysis of organisation's performance: e.g. employee data, working hours, spoilage data, etc.
 - Adding dashboards to analyse the demand for ingredients to allow restaurants to keep accurate levels of ingredients in stock
-
-## Data warehouse
-![dwh_design](https://github.com/vltnnx/Restaurant-Sales-Analysis/blob/main/fig/data%20warehouse/dwh-design.png?raw=true)
