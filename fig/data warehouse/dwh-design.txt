@@ -1,0 +1,50 @@
+# DWH design in text format for: https://app.quickdatabasediagrams.com/#/
+
+fact_orders
+-
+order_no PK varchar(7)
+timestamp timestamp
+restaurant_id int
+takeaway_id int
+
+dim_order_details
+-
+row_id PK int
+order_no varchar(7) FK >- fact_orders.order_no
+product_id int FK >- dim_products.product_id
+amount int
+
+dim_products 
+-
+product_id PK int
+product_name text
+category_id int FK >- dim_product_category.category_id
+price_id int FK >- dim_product_price.price_id
+
+dim_product_price
+-
+price_id PK int
+price numeric
+
+dim_product_category
+-
+category_id PK int
+category_name
+
+dim_product_ingredients
+-
+recipe_id PK int
+product_id int FK >- dim_products.product_id
+ingredient_id int FK >- dim_ingredient_cost.ingredient_id
+amount_kg numeric
+
+dim_ingredient_cost
+-
+ingredient_id PK int
+ingredient_name text
+cost_kg numeric
+
+dim_takeaway
+-
+takeaway_id PK int FK >- fact_orders.takeaway_id
+takeaway
