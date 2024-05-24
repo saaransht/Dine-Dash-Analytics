@@ -1,5 +1,5 @@
 # Restaurant Sales Analysis & Dashboard
-The aim of this project was to further enhance skills working with data utilising SQL, Python, and visualisation tools.
+A data project to analyse and visualise business performance to allow informed operational decision making. The aim of this project was to further enhance skills working with data utilising SQL, Python, and visualisation tools.
 
 ## Project steps
 1. Generating Sales Data: Creating initial data for a restaurant menu, then generating realistic (dummy) sales data for a restaurant chain with Python scripts.
