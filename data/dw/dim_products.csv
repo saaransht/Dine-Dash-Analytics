@@ -1,0 +1,27 @@
+product_name,product_id,category_id,price_id
+marinara,1,1,1
+diavola,2,1,2
+aglio olio e peperoncino,3,1,2
+tonnarella,4,1,3
+margherita,5,1,4
+provola e pepe,6,1,2
+prosciutto e funghi,7,1,3
+cacio e pepe,8,1,3
+con salame,9,1,2
+strega,10,1,5
+mona lisa,11,1,3
+insalata caprese,12,2,1
+octopus arancini,13,2,6
+cheese and peas arancini,14,2,6
+burrata with grapes & basil,15,2,7
+beef carpaccio,16,2,8
+tiramisu della mamma,17,3,9
+chocolate gelato,18,3,6
+vanilla gelato,19,3,6
+strawberry gelato,20,3,6
+pistachio gelato,21,3,6
+mango gelato,22,3,6
+lemon gelato,23,3,6
+zeppole,24,3,10
+caprese vanilla & raspberry,25,3,8
+plum-nut raw cake,26,3,11

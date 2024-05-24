@@ -1,0 +1,219 @@
+product_name,ingredient,amount
+marinara,flour,200
+marinara,water,120
+marinara,yeast,2
+marinara,salt,3
+marinara,olive oil,10
+marinara,canned tomatoes,80
+marinara,garlic,5
+marinara,oregano,2
+marinara,basil,3
+marinara,olive oil,5
+diavola,flour,200
+diavola,water,120
+diavola,yeast,2
+diavola,salt,3
+diavola,olive oil,10
+diavola,canned tomatoes,80
+diavola,mozzarella,100
+diavola,nduja,50
+diavola,pecorino,10
+diavola,parmesan,10
+diavola,basil,3
+diavola,olive oil,5
+aglio olio e peperoncino,flour,200
+aglio olio e peperoncino,water,120
+aglio olio e peperoncino,yeast,2
+aglio olio e peperoncino,salt,3
+aglio olio e peperoncino,olive oil,10
+aglio olio e peperoncino,mozzarella,100
+aglio olio e peperoncino,garlic,10
+aglio olio e peperoncino,garlic oil,5
+aglio olio e peperoncino,dried chili,2
+aglio olio e peperoncino,pecorino,10
+aglio olio e peperoncino,parmesan,10
+aglio olio e peperoncino,parsley,3
+tonnarella,flour,200
+tonnarella,water,120
+tonnarella,yeast,2
+tonnarella,salt,3
+tonnarella,olive oil,10
+tonnarella,mozzarella,100
+tonnarella,tuna,80
+tonnarella,onion,30
+tonnarella,basil,3
+tonnarella,capers,10
+tonnarella,grated lemon zest,5
+tonnarella,olive oil,5
+margherita,flour,200
+margherita,water,120
+margherita,yeast,2
+margherita,salt,3
+margherita,olive oil,10
+margherita,canned tomatoes,80
+margherita,mozzarella,100
+margherita,pecorino,10
+margherita,parmesan,10
+margherita,basil,3
+margherita,olive oil,5
+provola e pepe,flour,200
+provola e pepe,water,120
+provola e pepe,yeast,2
+provola e pepe,salt,3
+provola e pepe,olive oil,10
+provola e pepe,canned tomatoes,80
+provola e pepe,provolone,100
+provola e pepe,pecorino,10
+provola e pepe,parmesan,10
+provola e pepe,black pepper,2
+provola e pepe,basil,3
+provola e pepe,olive oil,5
+prosciutto e funghi,flour,200
+prosciutto e funghi,water,120
+prosciutto e funghi,yeast,2
+prosciutto e funghi,salt,3
+prosciutto e funghi,olive oil,10
+prosciutto e funghi,canned tomatoes,80
+prosciutto e funghi,mozzarella,100
+prosciutto e funghi,mushrooms,50
+prosciutto e funghi,ham,50
+prosciutto e funghi,pecorino,10
+prosciutto e funghi,parmesan,10
+prosciutto e funghi,basil,3
+prosciutto e funghi,olive oil,5
+cacio e pepe,flour,200
+cacio e pepe,water,120
+cacio e pepe,yeast,2
+cacio e pepe,salt,3
+cacio e pepe,olive oil,10
+cacio e pepe,mozzarella,100
+cacio e pepe,guanciale,50
+cacio e pepe,pecorino,10
+cacio e pepe,parmesan,10
+cacio e pepe,black pepper,2
+cacio e pepe,basil,3
+cacio e pepe,olive oil,5
+con salame,flour,200
+con salame,water,120
+con salame,yeast,2
+con salame,salt,3
+con salame,olive oil,10
+con salame,canned tomatoes,80
+con salame,mozzarella,100
+con salame,napoli salami,50
+con salame,pecorino,10
+con salame,parmesan,10
+con salame,basil,3
+con salame,olive oil,5
+strega,flour,200
+strega,water,120
+strega,yeast,2
+strega,salt,3
+strega,olive oil,10
+strega,garlic puree,30
+strega,pickled pumpkin,40
+strega,mushrooms,50
+strega,parsley,3
+strega,chili,2
+strega,olive oil,5
+mona lisa,flour,200
+mona lisa,water,120
+mona lisa,yeast,2
+mona lisa,salt,3
+mona lisa,olive oil,10
+mona lisa,mozzarella,100
+mona lisa,gorgonzola,50
+mona lisa,yellow cherry tomatoes,30
+mona lisa,red cherry tomatoes,30
+mona lisa,pesto,20
+mona lisa,olive oil,5
+insalata caprese,mozzarella,100
+insalata caprese,cherry tomatoes,80
+insalata caprese,lemon zest,5
+insalata caprese,basil,3
+insalata caprese,olive oil,5
+octopus arancini,rice,80
+octopus arancini,octopus,50
+octopus arancini,breadcrumbs,20
+octopus arancini,eggs,30
+octopus arancini,flour,30
+octopus arancini,oil,10
+cheese and peas arancini,rice,80
+cheese and peas arancini,taleggio,50
+cheese and peas arancini,peas,30
+cheese and peas arancini,breadcrumbs,20
+cheese and peas arancini,eggs,30
+cheese and peas arancini,flour,30
+cheese and peas arancini,oil,10
+burrata with grapes & basil,burrata,100
+burrata with grapes & basil,pickled grapes,50
+burrata with grapes & basil,pine nuts,10
+burrata with grapes & basil,basil mayonnaise,20
+beef carpaccio,beef fillet,80
+beef carpaccio,horseradish,5
+beef carpaccio,lemon,10
+beef carpaccio,olive oil,5
+beef carpaccio,capers,10
+beef carpaccio,sun-dried tomatoes,10
+tiramisu della mamma,eggs,200
+tiramisu della mamma,sugar,100
+tiramisu della mamma,mascarpone,250
+tiramisu della mamma,espresso,100
+tiramisu della mamma,cocoa powder,20
+tiramisu della mamma,flour,100
+tiramisu della mamma,salt,2
+tiramisu della mamma,baking powder,5
+tiramisu della mamma,vanilla extract,5
+tiramisu della mamma,coffee liqueur,50
+chocolate gelato,chocolate,50
+chocolate gelato,milk,100
+chocolate gelato,cream,50
+chocolate gelato,sugar,30
+chocolate gelato,eggs,20
+vanilla gelato,vanilla,5
+vanilla gelato,milk,100
+vanilla gelato,cream,50
+vanilla gelato,sugar,30
+vanilla gelato,eggs,20
+strawberry gelato,strawberries,50
+strawberry gelato,milk,100
+strawberry gelato,cream,50
+strawberry gelato,sugar,30
+strawberry gelato,eggs,20
+pistachio gelato,pistachios,50
+pistachio gelato,milk,100
+pistachio gelato,cream,50
+pistachio gelato,sugar,30
+pistachio gelato,eggs,20
+mango gelato,mango,50
+mango gelato,milk,100
+mango gelato,cream,50
+mango gelato,sugar,30
+mango gelato,eggs,20
+lemon gelato,lemons,50
+lemon gelato,milk,100
+lemon gelato,cream,50
+lemon gelato,sugar,30
+lemon gelato,eggs,20
+zeppole,flour,200
+zeppole,sugar,60
+zeppole,eggs,50
+zeppole,milk,100
+zeppole,yeast,5
+zeppole,butter,30
+zeppole,salt,2
+zeppole,amaretto,20
+zeppole,raisins,30
+caprese vanilla & raspberry,almond flour,40
+caprese vanilla & raspberry,sugar,25
+caprese vanilla & raspberry,eggs,50
+caprese vanilla & raspberry,vanilla extract,2
+caprese vanilla & raspberry,raspberries,60
+caprese vanilla & raspberry,butter,25
+caprese vanilla & raspberry,powdered sugar,10
+plum-nut raw cake,plums,50
+plum-nut raw cake,cashew nuts,50
+plum-nut raw cake,peanuts,30
+plum-nut raw cake,walnuts,30
+plum-nut raw cake,coconut oil,20
+plum-nut raw cake,cocoa powder,20
