@@ -2,3 +2,5 @@ dump/
 __pycache__
 sql/other/
 .DS_Store
+*.ipynb
+data/.DS_Store
