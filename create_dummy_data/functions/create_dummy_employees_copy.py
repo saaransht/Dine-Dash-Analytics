@@ -24,6 +24,7 @@ def get_dates():
     return date_list
 
 def create_shifts(restaurant_id):
+    print(f"Creating shifts for restaurant: {restaurant_id}")
     date_list = get_dates()
     employees, employees_df = get_employees()
 
@@ -48,10 +49,10 @@ def create_shifts(restaurant_id):
 
     # Create final shifts
     shift_start = shifts_df.drop(columns=["shift", "end"])
-    shift_start.rename(columns={"start":"hour"}, inplace=True)
+    shift_start.rename(columns={"start": "hour"}, inplace=True)
     shift_start["activity"] = "in"
     shift_end = shifts_df.drop(columns=["shift", "start"])
-    shift_end.rename(columns={"end":"hour"}, inplace=True)
+    shift_end.rename(columns={"end": "hour"}, inplace=True)
     shift_end["activity"] = "out"
 
     final_shifts = pd.concat([shift_start, shift_end], axis=0)
@@ -60,14 +61,14 @@ def create_shifts(restaurant_id):
 
     return final_shifts
 
-
 def create_employee_details(restaurant_id):
+    print(f"Creating employee details for restaurant: {restaurant_id}")
     employees, df = get_employees()
-    
+
     create = Faker()
 
     num_employees = 30
-    phone_number_numbers = ["0","1","2","3","4","5","6","7","8","9"]
+    phone_number_numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     phone_number_start = "+44 44 "
     employee_details = []
 
@@ -90,11 +91,8 @@ def create_employee_details(restaurant_id):
         curr_employee = [first_name, last_name, street_address, city, postal_code, email, phone_number]
         employee_details.append(curr_employee)
 
-    employee_df = pd.DataFrame(employee_details, columns=["first_name", "last_name", 
-                                                          "street_address", "city", 
-                                                          "postal_code", "email", 
-                                                          "phone_number"])
-    
+    employee_df = pd.DataFrame(employee_details, columns=["first_name", "last_name", "street_address", "city", "postal_code", "email", "phone_number"])
+
     employee_df["employee"] = employees
 
     titles = []
@@ -107,8 +105,8 @@ def create_employee_details(restaurant_id):
 
     return employee_df
 
-
 def create_restaurant_employees(restaurants_dict):
+    print("Creating restaurant employees")
     employee_details = pd.DataFrame()
 
     for i in list(restaurants_dict.keys()):
@@ -125,6 +123,7 @@ def create_restaurant_employees(restaurants_dict):
     return employee_details
 
 def create_employee_shifts(restaurants_dict, employee_details):
+    print("Creating employee shifts")
     employee_shifts = pd.DataFrame()
 
     # Create shifts

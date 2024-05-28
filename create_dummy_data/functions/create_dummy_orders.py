@@ -5,6 +5,7 @@ import os
 
 CURR_DIR_PATH = os.getcwd()
 PRODUCT_POPULARITY_PATH = CURR_DIR_PATH + "/create_dummy_data/data_for_dummy_creation/raw/product_popularity.csv"
+DATA_DEST = CURR_DIR_PATH + "/data/clean/"
 
 # Generate realistic timestamps for orders
 def generate_timestamps(day, num_orders, time_dist, time_ranges):
@@ -173,3 +174,51 @@ def generate_sales_data(num_orders, order_no):
     df = df.groupby(["order_no", "product_name"]).size().reset_index(name="amount")
 
     return df
+
+# Generates order data & details for all restaurants
+def generate_restaurant_orders(restaurants_dict, year, variance, daily_traffic_distribution, time_of_day_distribution, time_ranges, save="no", print_out="no"):
+    order_no = 0  # Tracking the order number to not create duplicate order numbers for the restaurants
+
+    # Generate dummy orders for restaurants
+    for i in list(restaurants_dict.keys()):
+        weekly_orders = restaurants_dict[i]["weekly_orders"]
+        restaurant_id = restaurants_dict[i]["id"]
+
+        # Generate the timestamps data
+        timestamps = generate_yearly_order_data(year, weekly_orders, variance, daily_traffic_distribution, time_of_day_distribution, time_ranges)
+
+        # Add order numbers
+        orders_df, order_no = add_order_no(timestamps, order_no)
+
+        # Generate takeaway data
+        orders_df = generate_takeaway(orders_df)
+
+        # Add restaurant_id
+        orders_df.loc[:, "restaurant_id"] = restaurant_id
+
+        # Format timestamp
+        orders_df = format_timestamp(orders_df)
+
+        order_details_df = generate_sales_data(len(orders_df), orders_df["order_no"].iloc[0])
+
+        orders_df = generate_order_no(orders_df)
+        order_details_df = generate_order_no(order_details_df)
+
+        # Save generated order data
+        if save == "no":
+            pass
+        elif save == "yes":
+            orders_df.to_csv(DATA_DEST + "orders_" + restaurant_id + ".csv", index=False)
+            order_details_df.to_csv(DATA_DEST + "order_details_" + restaurant_id + ".csv", index=False)
+        else:
+            pass
+
+        # Print generated order data
+        if print_out == "yes":
+            print(restaurant_id)
+            print(orders_df)
+            print(order_details_df)
+            print()
+            print()
+        else:
+            pass
