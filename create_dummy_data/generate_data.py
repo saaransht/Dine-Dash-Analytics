@@ -35,7 +35,7 @@ time_ranges = {
     "Dinner": ("18:00", "23:00")
 }
 
-# # Parameters: Year, number of orders weekly, variance for number of orders
+# Parameters: Year, number of orders weekly, variance for number of orders
 year = 2023
 base_weekly_orders = 500
 variance = 0.20
@@ -76,12 +76,5 @@ generate_restaurant_orders(restaurants, year, variance, daily_traffic_distributi
                            time_of_day_distribution, time_ranges, save="no", print_out="no")
 
 """ Create restaurant employees & shifts """
-employee_details = create_restaurant_employees(restaurants)
-print("EMPLOYEE DETAILS")
-print(employee_details)
-print()
-
-employee_shifts = create_employee_shifts(restaurants, employee_details)
-print("EMPLOYEE SHIFTS")
-print(employee_shifts)
-print()
+employee_details = create_restaurant_employees(restaurants, print_out="yes", save="yes")
+create_employee_shifts(restaurants, employee_details, print_out="yes", save="yes")

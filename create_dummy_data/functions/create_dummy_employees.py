@@ -1,6 +1,14 @@
 import pandas as pd
 from faker import Faker
 from random import choice
+import os
+
+CURR_DIR = os.getcwd()
+
+SALARIES_PATH = CURR_DIR + "/create_dummy_data/data_for_dummy_creation/raw/salaries.csv"
+EXPERIENCE_PATH = CURR_DIR + "/create_dummy_data/data_for_dummy_creation/raw/employee_experience.csv"
+
+DATA_DEST = CURR_DIR + "/data/clean/"
 
 def get_employees():
     cook = pd.read_csv("/Users/joonas/VSCode/Restaurant Sales Analysis/create_dummy_data/data_for_dummy_creation/raw/cook_shifts.csv")
@@ -60,7 +68,6 @@ def create_shifts(restaurant_id):
 
     return final_shifts
 
-
 def create_employee_details(restaurant_id):
     employees, df = get_employees()
     
@@ -107,8 +114,20 @@ def create_employee_details(restaurant_id):
 
     return employee_df
 
+def add_experience(employee_details):
+    experience = pd.read_csv(EXPERIENCE_PATH)
+    employee_details = pd.merge(employee_details, experience, on="employee_id")
 
-def create_restaurant_employees(restaurants_dict):
+    return employee_details
+
+def add_salary(employee_details):
+    salaries = pd.read_csv(SALARIES_PATH)
+    employee_details = pd.merge(employee_details, salaries[["title", "experience_years", "salary_id"]],
+                                on=["experience_years", "title"])
+
+    return employee_details
+
+def create_restaurant_employees(restaurants_dict, print_out="no", save="no"):
     employee_details = pd.DataFrame()
 
     for i in list(restaurants_dict.keys()):
@@ -120,11 +139,25 @@ def create_restaurant_employees(restaurants_dict):
 
     employee_details.reset_index(drop=True, inplace=True)
     employee_details["employee_id"] = employee_details.index + 1
+    employee_details = add_experience(employee_details)
     employee_details["employee_id"] = employee_details["employee_id"].astype(str).str.zfill(4)
+    employee_details = add_salary(employee_details)
+
+    # Print DataFrame
+    if print_out == "yes":
+        print("EMPLOYEE DETAILS:\n", employee_details, "\n\n")
+    else:
+        pass
+
+    # Save DataFrame
+    if save == "yes":
+        employee_details.to_csv(DATA_DEST + "employee_details.csv", index=False)
+    else:
+        pass
 
     return employee_details
 
-def create_employee_shifts(restaurants_dict, employee_details):
+def create_employee_shifts(restaurants_dict, employee_details, print_out="no", save="no"):
     employee_shifts = pd.DataFrame()
 
     # Create shifts
@@ -140,4 +173,10 @@ def create_employee_shifts(restaurants_dict, employee_details):
     employee_shifts = employee_shifts.sort_values(by=["date", "time"], ascending=True)
     employee_shifts.drop(columns=["employee", "hour"], inplace=True)
 
-    return employee_shifts
+    if print_out == "yes":
+        print("EMPLOYEE SHIFTS:\n", employee_shifts, "\n\n")
+    else:
+        pass
+
+    if save == "yes":
+        employee_shifts.to_csv(DATA_DEST + "employee_shifts.csv", index=False)
