@@ -7,7 +7,7 @@ INGREDIENTS_PATH = DUMMY_DATA_PATH_RAW + "ingredients.csv"
 INGREDIENTS_COST_PATH = DUMMY_DATA_PATH_RAW + "ingredient_cost.csv"
 PRODUCTS_PATH = DUMMY_DATA_PATH_RAW + "products.csv"
 
-def create_dimensions(data_destination):
+def create_dimensions(data_destination, save="no", print_out="no"):
     ingredients = pd.read_csv(INGREDIENTS_PATH)
     products = pd.read_csv(PRODUCTS_PATH)
     ingredient_cost = pd.read_csv(INGREDIENTS_COST_PATH)
@@ -67,10 +67,23 @@ def create_dimensions(data_destination):
     # Create recipe_id column
     product_ingredients["recipe_id"] = product_ingredients.index + 1
 
+    if print_out == "yes":
+        print("DIM_INGREDIENT_COST\n", ingredient_cost, "\n\n",
+              "DIM_PRODUCT_INGREDIENTS\n", product_ingredients, "\n\n",
+              "DIM_PRODUCT_CATEGORY\n", product_category, "\n\n",
+              "DIM_PRODUCT_PRICE\n", product_price, "\n\n"
+              )
+    else:
+        pass
 
-    # Save dimensions
-    ingredient_cost.to_csv(data_destination + "ingredient_cost.csv", index=False)
-    product_ingredients.to_csv(data_destination + "product_ingredients.csv", index=False)
-    products.to_csv(data_destination + "products.csv", index=False)
-    product_category.to_csv(data_destination + "product_category.csv", index=False)
-    product_price.to_csv(data_destination + "product_price.csv", index=False)
+    if save == "no":
+        pass
+    elif save == "yes":
+        # Save dimensions
+        ingredient_cost.to_csv(data_destination + "ingredient_cost.csv", index=False)
+        product_ingredients.to_csv(data_destination + "product_ingredients.csv", index=False)
+        products.to_csv(data_destination + "products.csv", index=False)
+        product_category.to_csv(data_destination + "product_category.csv", index=False)
+        product_price.to_csv(data_destination + "product_price.csv", index=False)
+    else:
+        pass
