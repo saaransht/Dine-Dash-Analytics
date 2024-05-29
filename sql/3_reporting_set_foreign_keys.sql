@@ -39,10 +39,54 @@ alter table reporting.dim_products
 
 -- No foreign keys in dim_takeaway
 
--- FOREIGN KEYS FOR dim_products
+-- -- FOREIGN KEYS FOR dim_products
 alter table reporting.fact_orders
 	add constraint takeaway_id_FK
 	foreign key(takeaway_id)
 	references reporting.dim_takeaway(takeaway_id);
 	
+-- No foreign keys in dim_titles
 
+-- FOREIGN KEYS FOR dim_restaurants
+alter table reporting.dim_restaurants
+	add constraint restaurants_postal_code_FK
+	foreign key(postal_code)
+	references reporting.dim_postal_code(postal_code);
+
+-- FOREIGN KEYS FOR dim_salaries
+alter table reporting.dim_salaries
+	add constraint salaries_title_id_FK
+	foreign key(title_id)
+	references reporting.dim_titles(title_id);
+
+-- No foreign keys in dim_cities
+
+-- FOREIGN KEYS FOR dim_postal_code
+alter table reporting.dim_postal_code
+	add constraint city_id_FK
+	foreign key(city_id)
+	references reporting.dim_cities(city_id);
+
+-- FOREIGN KEYS FOR dim_employees
+alter table reporting.dim_employees
+	add constraint employees_title_id_FK
+	foreign key(title_id)
+	references reporting.dim_titles(title_id)
+	add constraint employees_restaurant_id_FK
+	foreign key(restaurant_id)
+	references reporting.dim_restaurants(restaurant_id)
+	add constraint employees_postal_code_id_FK
+	foreign key(postal_code)
+	references reporting.dim_postal_code(postal_code)
+	add constraint employees_salary_id_FK
+	foreign key(salary_id)
+	references reporting.dim_salaries(salary_id);
+
+-- FOREIGN KEYS FOR fact_employee_shifts
+alter table reporting.dim_employee_shifts
+	add constraint shifts_employee_id_FK
+	foreign key(employee_id)
+	references reporting.dim_employees(employee_id)
+	add constraint shifts_restaurant_id_FK
+	foreign key(restaurant_id)
+	references reporting.dim_restaurants(restaurant_id);

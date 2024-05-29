@@ -4,3 +4,5 @@ sql/other/
 .DS_Store
 *.ipynb
 data/.DS_Store
+sql/TEMPORARY_employee and restaurant details tables.sql
+sql/TEMPORARY_import employees and salary and query worktime and salary.sql
