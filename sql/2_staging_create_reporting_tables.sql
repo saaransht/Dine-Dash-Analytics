@@ -9,7 +9,16 @@ drop table if exists
 	reporting.dim_product_price,
 	reporting.dim_products,
 	reporting.dim_takeaway,
-	reporting.fact_orders;
+	reporting.fact_orders,
+	reporting.dim_titles,
+	reporting.dim_restaurants,
+	reporting.dim_salaries,
+	staging.cities,
+	reporting.dim_cities,
+	staging.postal_code,
+	reporting.dim_postal_code,
+	reporting.dim_employees,
+	reporting.fact_employee_shifts;
 
 -- dim_ingredient_cost
 create table if not exists reporting.dim_ingredient_cost (
@@ -137,7 +146,126 @@ select * from staging.products;
 
 select * from reporting.dim_products;
 
+-- dim_titles
+create table if not exists reporting.dim_titles (
+	title_id SERIAL PRIMARY KEY,
+	title TEXT
+);
 
+INSERT INTO reporting.dim_titles(title)
+	select distinct(title) from staging.employees;
+
+
+-- dim_restaurants
+create table if not exists reporting.dim_restaurants (
+	restaurant_id VARCHAR(6) PRIMARY KEY,
+	restaurant_name TEXT,
+	address VARCHAR(100),
+	postal_code VARCHAR(10)
+);
+
+INSERT INTO reporting.dim_restaurants(restaurant_id, restaurant_name, address, postal_code) 
+	  select restaurant_id, restaurant_name, address, postal_code
+	  from staging.restaurants;
+	  
+-- dim_salaries
+create table if not exists reporting.dim_salaries (
+	salary_id INT PRIMARY KEY,
+	experience_years INT,
+	title_id INT,
+	salary_h NUMERIC
+);
+
+INSERT INTO reporting.dim_salaries(salary_id, experience_years, title_id, salary_h)
+	select s.salary_id, s.experience_years, t.title_id, s.salary_h
+	from staging.salaries s
+	join reporting.dim_titles t on s.title = t.title;
+	
+-- dim_cities
+create table if not exists staging.cities (
+	city TEXT
+);
+
+INSERT INTO staging.cities(city)
+	select distinct(city) from staging.employees;
+	
+INSERT INTO staging.cities(city)
+	select distinct(city) from staging.restaurants;
+
+create table if not exists reporting.dim_cities (
+	city_id SERIAL PRIMARY KEY,
+	city TEXT
+);
+
+INSERT INTO reporting.dim_cities(city)
+	select distinct(city) from staging.cities;
+	
+select * from reporting.dim_cities;
+
+-- dim_postal_code
+drop table if exists staging.postal_code;
+
+create table if not exists staging.postal_code (
+	postal_code varchar(10),
+	city TEXT
+);
+
+INSERT INTO staging.postal_code(postal_code, city)
+	select distinct(postal_code), city from staging.employees;
+	
+INSERT INTO staging.postal_code(postal_code, city)
+	select distinct(postal_code), city from staging.restaurants;
+
+create table if not exists reporting.dim_postal_code (
+	postal_code VARCHAR(10) PRIMARY KEY,
+	city_id INT
+);
+
+INSERT INTO reporting.dim_postal_code(postal_code, city_id)
+	select distinct(p.postal_code), dc.city_id
+	from staging.postal_code p
+	join reporting.dim_cities dc on dc.city = p.city;
+
+-- dim_employees
+create table if not exists reporting.dim_employees (
+	employee_id VARCHAR(4) PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	title_id INT,
+	email VARCHAR(50),
+	phone_number VARCHAR(15),
+	restaurant_id VARCHAR(6),
+	address VARCHAR(100),
+	postal_code VARCHAR(10),
+	experience_years INT,
+	salary_id INT
+);
+
+INSERT INTO reporting.dim_employees(employee_id, first_name, last_name,
+								   title_id, email, phone_number,
+								   restaurant_id, address, postal_code,
+								   experience_years, salary_id)
+	select e.employee_id, e.first_name, e.last_name, 
+		   dt.title_id, e.email, e.phone_number, 
+		   e.restaurant_id, e.address, e.postal_code, 
+		   e.experience_years, e.salary_id
+	from staging.employees e
+	join reporting.dim_titles dt on dt.title = e.title;
+
+
+-- fact_employee_shifts
+create table if not exists reporting.fact_employee_shifts (
+	log_id SERIAL PRIMARY KEY,
+	date DATE,
+	time TIME,
+	activity VARCHAR(3),
+	employee_id VARCHAR(4),
+	restaurant_id VARCHAR(6)
+);
+
+INSERT INTO reporting.fact_employee_shifts(date, time, activity, employee_id, restaurant_id)
+	select date, time, activity, employee_id, restaurant_id
+	from staging.employee_shifts;
 
 
 

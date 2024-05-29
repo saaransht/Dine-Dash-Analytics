@@ -83,7 +83,7 @@ def create_employee_details(restaurant_id):
         last_name = create.last_name()
 
         address = create.address()
-        street_address = create.street_address()
+        address = create.street_address()
         city = create.city()
         postal_code = create.postalcode()
 
@@ -94,11 +94,11 @@ def create_employee_details(restaurant_id):
             next = choice(phone_number_numbers)
             phone_number = phone_number + next
 
-        curr_employee = [first_name, last_name, street_address, city, postal_code, email, phone_number]
+        curr_employee = [first_name, last_name, address, city, postal_code, email, phone_number]
         employee_details.append(curr_employee)
 
     employee_df = pd.DataFrame(employee_details, columns=["first_name", "last_name", 
-                                                          "street_address", "city", 
+                                                          "address", "city", 
                                                           "postal_code", "email", 
                                                           "phone_number"])
     

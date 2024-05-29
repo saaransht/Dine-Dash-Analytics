@@ -1,4 +1,4 @@
-first_name,last_name,street_address,city,postal_code,email,phone_number,employee,title,restaurant_id,employee_id,experience_years,salary_id
+first_name,last_name,address,city,postal_code,email,phone_number,employee,title,restaurant_id,employee_id,experience_years,salary_id
 Jennifer,Grant,2440 Amy Highway,Lake Michael,76078,jennifer@grant.net,+44 44 8756271,sous chef-1,Sous Chef,HKI001,0001,1,26
 George,Rojas,7703 William Plaza,Kaylachester,50507,george@rojas.net,+44 44 5508459,head chef-1,Head Chef,HKI001,0002,8,8
 Lisa,Monroe,4626 Timothy Motorway Apt. 418,North Meganborough,99182,lisa@monroe.net,+44 44 3727410,line cook-1,Line Cook,HKI001,0003,2,77

@@ -1,0 +1,9 @@
+restaurant_id,restaurant_name,address,postal_code,city
+HKI001,Helsinki Kamppi,Urho Kekkosen katu 9032,00100,Helsinki
+HKI002,Helsinki Katajanokka,Katajanokanlaituri 2202,00160,Helsinki
+HKI003,Helsinki Kallio,Kolmas linja 524,00530,Helsinki
+OUL001,Oulu Myllytulli,Rantakatu 5532,90100,Oulu
+TKU001,Turku Aurakatu,Aurakatu 1545,20100,Turku
+TKU002,Turku Föri,Läntinen rantakatu 332,20100,Turku
+TRE001,Tampere Finlayson,Finlaysonin katu 1134,33210,Tampere
+TRE002,Tampere Ratina,Ratinankatu 2213,33100,Tampere
