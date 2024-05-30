@@ -18,7 +18,9 @@ drop table if exists
 	staging.postal_code,
 	reporting.dim_postal_code,
 	reporting.dim_employees,
-	reporting.fact_employee_shifts;
+	reporting.fact_employee_shifts
+	staging.working_hours,
+	reporting.dim_working_hours;
 
 -- dim_ingredient_cost
 create table if not exists reporting.dim_ingredient_cost (
@@ -256,24 +258,63 @@ INSERT INTO reporting.dim_employees(employee_id, first_name, last_name,
 -- fact_employee_shifts
 create table if not exists reporting.fact_employee_shifts (
 	log_id SERIAL PRIMARY KEY,
-	date DATE,
-	time TIME,
+	timestamp TIMESTAMP,
 	activity VARCHAR(3),
 	employee_id VARCHAR(4),
 	restaurant_id VARCHAR(6)
 );
 
-INSERT INTO reporting.fact_employee_shifts(date, time, activity, employee_id, restaurant_id)
-	select date, time, activity, employee_id, restaurant_id
+INSERT INTO reporting.fact_employee_shifts(timestamp, activity, employee_id, restaurant_id)
+	select CAST(date || ' ' || time AS timestamp), activity, employee_id, restaurant_id
 	from staging.employee_shifts;
 
 
+-- dim_working_hours
+create table if not exists staging.working_hours (
+	row_id serial primary key,
+	employee_id VARCHAR(4), 
+	start_time timestamp, 
+	end_time timestamp, 
+	hours_worked numeric
+);
 
+INSERT INTO staging.working_hours(employee_id, start_time, end_time, hours_worked)
 
+		with WorkDay as (
+			select es.employee_id, es.date, 
+				   CAST(es.date || ' ' || es.time as timestamp) as start_time, 
+				   CAST(es2.date || ' ' || es2.time as timestamp) as end_time
+			from staging.employee_shifts es
+			join staging.employee_shifts es2 on es.employee_id = es2.employee_id
+												and es.date = es2.date
+												and es.activity = 'in'
+												and es2.activity = 'out'
 
+		),							
+		WorkDuration as (
+			select employee_id, start_time, end_time,
+					ROUND(EXTRACT(EPOCH FROM(end_time - 
+									   		 start_time)) / 3600, 2)
+									   AS hours_worked
+			from WorkDay
+		)
 
+		select employee_id, start_time, end_time, hours_worked
+		from WorkDuration
+		order by start_time, employee_id;
 
+create table if not exists reporting.dim_working_hours (
+	row_id INT PRIMARY KEY,
+	employee_id VARCHAR(4),
+	start_time TIMESTAMP,
+	end_time TIMESTAMP,
+	hours_worked NUMERIC	
+);
 
+INSERT INTO reporting.dim_working_hours
+	select * from staging.working_hours;
+
+select * from reporting.dim_working_hours;
 
 
 

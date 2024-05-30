@@ -60,7 +60,7 @@ select * from staging.ingredient_cost;
 create table if not exists staging.employees (
 	first_name TEXT,
 	last_name TEXT,
-	street_address VARCHAR(100),
+	address VARCHAR(100),
 	city TEXT,
 	postal_code INT,
 	email VARCHAR (50),
@@ -111,19 +111,18 @@ create table if not exists staging.restaurants (
 
 /*
 ADD DATA TO STAGING TABLES (in psql tool)
-Connect to database in terminal: psql -U postgres -d pizza_restaurant
-	OR use PSQL tool in pgAdmin
+-- format data paths to your repository
 
-\copy staging.ingredient_cost(ingredient_name, cost_kg, ingredient_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/ingredient_cost.csv' DELIMITER ',' CSV HEADER;
-\copy staging.product_category(category_name, category_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/product_category.csv' DELIMITER ',' CSV HEADER;
-\copy staging.product_ingredients(amount_kg, ingredient_id, product_id, recipe_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/product_ingredients.csv' DELIMITER ',' CSV HEADER;
-\copy staging.product_price(price, price_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/product_price.csv' DELIMITER ',' CSV HEADER;
-\copy staging.products(product_name, product_id, category_id, price_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/products.csv' DELIMITER ',' CSV HEADER;
-\copy staging.employees(first_name, last_name, street_address, city, postal_code, email, phone_number, employee, title, restaurant_id, employee_id, experience_years, salary_id) from '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/employee_details.csv' DELIMITER ',' CSV HEADER;
-\copy staging.salaries(salary_id, experience_years, title, salary_h) from '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/salaries.csv' DELIMITER ',' CSV HEADER;
-\copy staging.employee_shifts(date, activity, time, restaurant_id, employee_id) from '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/employee_shifts.csv' DELIMITER ',' CSV HEADER;
-\copy staging.salary_additions(addition_type, addition_start, addition_end, hourly_addition, multiplier) from '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/salary_additions.csv' DELIMITER ',' CSV HEADER;
-\copy staging.restaurants(restaurant_id, restaurant_name, address, postal_code, city) from '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/restaurants.csv' DELIMITER ',' CSV HEADER;
+\copy staging.ingredient_cost(ingredient_name, cost_kg, ingredient_id) FROM 'REPOSITORY PATH/data/clean/ingredient_cost.csv' DELIMITER ',' CSV HEADER;
+\copy staging.product_category(category_name, category_id) FROM 'REPOSITORY PATH/data/clean/product_category.csv' DELIMITER ',' CSV HEADER;
+\copy staging.product_ingredients(amount_kg, ingredient_id, product_id, recipe_id) FROM 'REPOSITORY PATH/data/clean/product_ingredients.csv' DELIMITER ',' CSV HEADER;
+\copy staging.product_price(price, price_id) FROM 'REPOSITORY PATH/data/clean/product_price.csv' DELIMITER ',' CSV HEADER;
+\copy staging.products(product_name, product_id, category_id, price_id) FROM 'REPOSITORY PATH/data/clean/products.csv' DELIMITER ',' CSV HEADER;
+\copy staging.employees(first_name, last_name, address, city, postal_code, email, phone_number, employee, title, restaurant_id, employee_id, experience_years, salary_id) from 'REPOSITORY PATH/data/clean/employee_details.csv' DELIMITER ',' CSV HEADER;
+\copy staging.salaries(salary_id, experience_years, title, salary_h) from 'REPOSITORY PATH/data/clean/salaries.csv' DELIMITER ',' CSV HEADER;
+\copy staging.employee_shifts(date, activity, time, restaurant_id, employee_id) from 'REPOSITORY PATH/data/clean/employee_shifts.csv' DELIMITER ',' CSV HEADER;
+\copy staging.salary_additions(addition_type, addition_start, addition_end, hourly_addition, multiplier) from 'REPOSITORY PATH/data/clean/salary_additions.csv' DELIMITER ',' CSV HEADER;
+\copy staging.restaurants(restaurant_id, restaurant_name, address, postal_code, city) from 'REPOSITORY PATH/data/clean/restaurants.csv' DELIMITER ',' CSV HEADER;
 
 select * from staging.ingredient_cost;
 select * from staging.product_category;
@@ -159,28 +158,30 @@ create table if not exists staging.order_details (
 );
 
 /* ADD DATA TO ORDERS TABLE (in psql tool)
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_HKI001.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_HKI002.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_HKI003.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_TKU001.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_TKU002.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_TRE001.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_TRE002.csv' DELIMITER ',' CSV HEADER;
-\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/orders_OUL001.csv' DELIMITER ',' CSV HEADER;
+-- format data paths to your repository
+
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_HKI001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_HKI002.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_HKI003.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_TKU001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_TKU002.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_TRE001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_TRE002.csv' DELIMITER ',' CSV HEADER;
+\copy staging.orders(timestamp, order_no, takeaway, restaurant_id) FROM 'REPOSITORY PATH/data/clean/orders_OUL001.csv' DELIMITER ',' CSV HEADER;
 
 select * from staging.orders;
 
 select distinct(restaurant_id) from staging.orders;
 
 ADD DATA TO ORDER_DETAILS TABLE (in psql tool)
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_HKI001.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_HKI002.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_HKI003.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_TKU001.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_TKU002.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_TRE001.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_TRE002.csv' DELIMITER ',' CSV HEADER;
-\copy staging.order_details(order_no, product_name, amount) FROM '/Users/joonas/VSCode/Restaurant Sales Analysis/data/clean/order_details_OUL001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_HKI001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_HKI002.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_HKI003.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_TKU001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_TKU002.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_TRE001.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_TRE002.csv' DELIMITER ',' CSV HEADER;
+\copy staging.order_details(order_no, product_name, amount) FROM 'REPOSITORY PATH/data/clean/order_details_OUL001.csv' DELIMITER ',' CSV HEADER;
 
 select * from staging.order_details;
 
