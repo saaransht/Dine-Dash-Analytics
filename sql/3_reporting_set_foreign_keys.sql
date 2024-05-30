@@ -71,22 +71,30 @@ alter table reporting.dim_postal_code
 alter table reporting.dim_employees
 	add constraint employees_title_id_FK
 	foreign key(title_id)
-	references reporting.dim_titles(title_id)
+	references reporting.dim_titles(title_id),
 	add constraint employees_restaurant_id_FK
 	foreign key(restaurant_id)
-	references reporting.dim_restaurants(restaurant_id)
+	references reporting.dim_restaurants(restaurant_id),
 	add constraint employees_postal_code_id_FK
 	foreign key(postal_code)
-	references reporting.dim_postal_code(postal_code)
+	references reporting.dim_postal_code(postal_code),
 	add constraint employees_salary_id_FK
 	foreign key(salary_id)
 	references reporting.dim_salaries(salary_id);
 
 -- FOREIGN KEYS FOR fact_employee_shifts
-alter table reporting.dim_employee_shifts
+alter table reporting.fact_employee_shifts
 	add constraint shifts_employee_id_FK
 	foreign key(employee_id)
-	references reporting.dim_employees(employee_id)
+	references reporting.dim_employees(employee_id),
 	add constraint shifts_restaurant_id_FK
 	foreign key(restaurant_id)
 	references reporting.dim_restaurants(restaurant_id);
+
+
+-- FOREIGN KEYS FOR dim_working_hours
+alter table reporting.dim_working_hours
+	add constraint working_hours_employee_id_FK
+	foreign key(employee_id)
+	references reporting.dim_employees(employee_id);
+	
