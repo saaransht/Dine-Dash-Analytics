@@ -9,3 +9,5 @@ sql/TEMPORARY_import employees and salary and query worktime and salary.sql
 sql/with_save_locations/
 data/dw2
 data/.DS_Store
+sql/azure/analysis_tables/ANALYSIS_TABLE_NOTES.sql
+data/.DS_Store
